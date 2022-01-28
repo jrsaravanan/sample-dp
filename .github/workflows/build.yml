@@ -20,3 +20,8 @@ jobs:
         run: |
           echo Add other custom actions to build,
           echo test, and deploy your project.
+
+      - name: Event Information
+        run: |
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+ 
