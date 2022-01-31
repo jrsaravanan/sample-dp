@@ -31,6 +31,6 @@ jobs:
 
       - name: Event Information
         run: | 
-          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'
-          echo "Event '${{ github.event.action }}' - '${{ github.event.service-name }}' - '${{ github.event.environment }}'
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+          echo "Event '${{ github.event.action }}' - '${{ github.event.service-name }}' - '${{ github.event.environment }}'"
  
