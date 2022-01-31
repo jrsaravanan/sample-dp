@@ -6,19 +6,14 @@ on:
     branches:
       - main
     inputs:
-      name:
-        type: choice
-        description: Who to greet
-        options: 
-        - monalisa
-        - cschleiden
-      message:
+      action:
+        description: Excecute Action
         required: true
-      use-emoji:
-        type: boolean
-        description: Include 🎉🤣 emojis
+      service-name:
+        description: Service Name
       environment:
-        type: environment  
+        type: string
+        description: Environment 
   repository_dispatch:
     types: [sample_push]
 
@@ -35,6 +30,7 @@ jobs:
           echo test, and deploy your project.
 
       - name: Event Information
-        run: |
-          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+        run: | 
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'
+          echo "Event '${{ github.event.action }}' - '${{ github.event.service-name }}' - '${{ github.event.environment }}'
  
