@@ -37,8 +37,9 @@ jobs:
           echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
 
       - name: Event Information
-        if: ${{ github.event_name }} != "workflow_dispatch"
+        if: ${{ github.event.action }} == "sample_push"
         run: | 
+          echo "Event Dispatch"
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
           echo "Event '${{ github.event.action }}' - '${{ github.event.client_payload.service-name }}' - '${{ github.event.inputs.environment }}'"
           echo "SERVICE_NAME=${{ github.event.client_payload.service-name }}" >> $GITHUB_ENV
