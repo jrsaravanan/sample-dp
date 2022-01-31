@@ -29,8 +29,24 @@ jobs:
           echo Add other custom actions to build,
           echo test, and deploy your project.
 
-      - name: Event Information
+      - name: Input
+        if: github.event_name == "sample_push"
         run: | 
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
-          echo "Event '${{ github.event.inputs.action }}' - '${{ github.event.inputs.service-name }}' - '${{ github.event.inputs.environment }}'"
+          echo "Event '${{ github.event.action }}' - '${{ github.event.client_payload.service-name }}' - '${{ github.event.inputs.environment }}'"
+          echo "SERVICE_NAME=${{ github.event.inputs.service-name }}" >> $GITHUB_ENV
+          echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
+
+      - name: Event Information
+        if: github.event_name == "sample_push"
+        run: | 
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+          echo "Event '${{ github.event.action }}' - '${{ github.event.client_payload.service-name }}' - '${{ github.event.inputs.environment }}'"
+          echo "SERVICE_NAME=${{ github.event.client_payload.service-name }}" >> $GITHUB_ENV
+          echo "ENV=${{ github.event.client_payload.env }}" >> $GITHUB_ENV
+
+      - name: Run a echo
+        run: |
+          echo ${{ env.SERVICE_NAME }}
+          echo ${{ env.ENV }}    
  
