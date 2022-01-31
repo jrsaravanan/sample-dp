@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
     branches:
       - main
-        inputs:
-    name:
+    inputs:
+      name:
         type: choice
         description: Who to greet
         options: 
