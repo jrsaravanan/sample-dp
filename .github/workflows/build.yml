@@ -30,14 +30,14 @@ jobs:
           echo test, and deploy your project.
 
       - name: Input
-        if: ${{ github.event_name }} == "workflow_dispatch"
+        if: ${{ github.event_name }} == 'workflow_dispatch'
         run: | 
           echo "Workflow Dispatch"
           echo "SERVICE_NAME=${{ github.event.inputs.service-name }}" >> $GITHUB_ENV
           echo "ENV=${{ github.event.inputs.environment }}" >> $GITHUB_ENV
 
       - name: Event Information
-        if: ${{ github.event.action }} == "sample_push"
+        if: ${{ github.event.action }} == 'sample_push'
         run: | 
           echo "Event Dispatch"
           echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
